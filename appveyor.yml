@@ -1,0 +1,23 @@
+# Test against this version of Node.JS
+enviornment:
+  matrix:
+    - nodejs_version: "10.5.0"
+
+#Install scripts. (runs after rep cloning)
+install:
+  # Get the lastest stable version of Node.JS or io.js
+  - ps: Install-Product node $env:nodejs_version
+  # install modules
+  - npm install
+
+# Post-install test scripts.
+test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
+  -- npm test
+
+# Don't actually build.
+build: off
+
